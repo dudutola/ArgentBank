@@ -1,4 +1,5 @@
 import { Form } from "../../components/Form";
+import "../../styles/pages/_signin.scss";
 
 export const SignIn = () => {
   return (

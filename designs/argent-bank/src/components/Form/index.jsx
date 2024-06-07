@@ -1,3 +1,5 @@
+import "../../styles/components/_form.scss";
+
 export const Form = () => {
   return (
     <form action="">

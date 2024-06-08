@@ -1,4 +1,6 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from './store';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import '../styles/main.scss';
 import { Home } from "../pages/Home";
@@ -9,15 +11,17 @@ import { Footer } from "../components/Footer";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/signin' element={<SignIn />} />
-          <Route path='/user' element={<User />} />
-        </Routes>
-      <Footer />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Header />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/signin' element={<SignIn />} />
+            <Route path='/user' element={<User />} />
+          </Routes>
+        <Footer />
+      </BrowserRouter>
+    </Provider>
   );
 }
 

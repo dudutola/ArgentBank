@@ -1,4 +1,4 @@
-import { Form } from "../../components/Form";
+import { Form } from "../../features/Form";
 import "../../styles/pages/_signin.scss";
 
 export const SignIn = () => {

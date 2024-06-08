@@ -1,36 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { api } from "../services/userApi";
 import { formSlice } from "../features/Form/formSlice";
-import { userSlice } from "../pages/User/userSlice";
-
-// const SET_FIELD = "SET_FIELD";
-
-// export const setField = (field, value) => ({
-//   type: SET_FIELD,
-//   payload: {field, value},
-// });
-
-// const initialState = {
-//   email: '',
-//   password: '',
-// };
-
-// const fieldsReducer = (state = initialState, action) => {
-//   switch (action.type) {
-//     case SET_FIELD:
-//       const {field, value} = action.payload;
-//       return {...state, [field]: value };
-//     default:
-//       return state;
-//   }
-// };
-
-// export const store = configureStore({
-//   reducer: fieldsReducer,
-// });
+import { loginSlice } from "../features/Login/loginSlice";
 
 export const store = configureStore({
   reducer: {
     form: formSlice.reducer,
-    user: userSlice.reducer,
+    user: loginSlice.reducer,
+    [api.reducerPath]: api.reducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
 });

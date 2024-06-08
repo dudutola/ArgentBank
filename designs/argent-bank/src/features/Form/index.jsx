@@ -1,46 +1,33 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectEmail, selectPassword } from "../../app/selectors";
 import { formSlice } from "./formSlice";
-import { userSlice } from "../../pages/User/userSlice";
-
+import { loginSlice } from "../Login/loginSlice";
+import { useLoginUserMutation } from "../../services/userApi";
 import "../../styles/components/_form.scss";
 
 export const Form = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [loginUser, { isLoading, isError, error }] = useLoginUserMutation();
   const email = useSelector(selectEmail);
   const password = useSelector(selectPassword);
-  const [error, setError] = useState(null);
+  const [customError, setCustomError] = useState(null);
 
-  const handleEmailChange = (evt) => {
-    dispatch(formSlice.actions.setField({field: "email", value: evt.target.value}));
-  };
-
-  const handlePasswordChange = (evt) => {
-    dispatch(formSlice.actions.setField({field: "password", value: evt.target.value}));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch("http://localhost:3001/api/v1/user/login", {
-        method: 'POST',
-        body: JSON.stringify({email, password}),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      // if (!response.ok) {
-      //   throw new Error("Failed to sign in")
-      // }
-      const userData = await response.json();
-      dispatch(userSlice.actions.setUserData(userData));
 
-    } catch (error) {
-      setError("Failed to sign in. Please try again.");
-      console.log({error})
+    try {
+      const userData = await loginUser({ email, password }).unwrap();
+      dispatch(loginSlice.actions.setUserData(userData));
+      setCustomError(null);
+      navigate('/user');
+    } catch (error){
+      setCustomError("Failed to sign in. Please try again.");
     }
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -51,7 +38,9 @@ export const Form = () => {
             type="text"
             id="username"
             value={email}
-            onChange={handleEmailChange}
+            onChange={(e) =>
+              dispatch(formSlice.actions.setField({field: "email", value: e.target.value}))
+            }
             required
           />
         </label>
@@ -63,7 +52,9 @@ export const Form = () => {
             type="password"
             id="password"
             value={password}
-            onChange={handlePasswordChange}
+            onChange={(e) =>
+              dispatch(formSlice.actions.setField({field: "password", value: e.target.value})
+            )}
             required
           />
         </label>
@@ -75,9 +66,13 @@ export const Form = () => {
         </label>
       </div>
       <button type="submit" className="sign-in-button">
-        Sign In
+        {isLoading ? "Loading..." : "Sign In"}
       </button>
-      {error && <div className="error-message">{error}</div>}
+      {(isError || customError) && (
+        <div className="error-message">
+          {customError ? customError : `Error: ${error?.data?.message || error.message}`}
+        </div>
+      )}
     </form>
   );
 };

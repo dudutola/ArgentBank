@@ -4,7 +4,7 @@ import { store } from './store';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import '../styles/main.scss';
 import { Home } from "../pages/Home";
-import { SignIn } from "../pages/SignIn";
+import { Login } from "../pages/Login";
 import { UserProfile } from "../pages/UserProfile";
 import { Header } from "../common/components/Header";
 import { Footer } from "../common/components/Footer";
@@ -16,8 +16,8 @@ function App() {
         <Header />
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/signin' element={<SignIn />} />
-            <Route path='/user' element={<UserProfile />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/profile' element={<UserProfile />} />
           </Routes>
         <Footer />
       </BrowserRouter>

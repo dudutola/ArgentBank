@@ -6,7 +6,7 @@ import { loginSlice } from "./loginSlice";
 import { useLoginUserMutation } from "../../services/userApi";
 import "../../styles/components/_login.scss";
 
-export const Login = () => {
+export const LoginResponse = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginUser, { isLoading, isError, error }] = useLoginUserMutation();
@@ -21,7 +21,7 @@ export const Login = () => {
       const userData = await loginUser({ email, password }).unwrap();
       dispatch(loginSlice.actions.setUserData(userData));
       setCustomError(null);
-      navigate('/user');
+      navigate('/profile');
     } catch (error){
       setCustomError("Failed to sign in. Please try again.");
     }

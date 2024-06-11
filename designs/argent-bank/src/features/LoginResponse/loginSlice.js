@@ -13,5 +13,12 @@ export const loginSlice = createSlice({
     setUserData(state, action) {
       state.user = action.payload;
     },
+    logout(state) {
+      state.user = null;
+      state.email = '';
+      state.password = '';
+    },
   },
 });
+
+export const { setField, setUserData, logout } = loginSlice.actions;

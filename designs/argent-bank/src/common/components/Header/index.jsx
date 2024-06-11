@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 // import Logo from "../../../../img/argentBankLogo.png";
-import "../../styles/components/_header.scss";
+import "../../../styles/components/_header.scss";
+
 
 export const Header = () => {
   return (

@@ -7,7 +7,7 @@ export const api = createApi({
     baseUrl: 'http://localhost:3001/api/v1/',
 
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().user.token;
+      const token = getState().login.token;
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
       }
@@ -23,8 +23,8 @@ export const api = createApi({
         url: 'user/login',
         method: 'POST',
         body: credentials,
-      })
-    })
+      }),
+    }),
   })
 });
 

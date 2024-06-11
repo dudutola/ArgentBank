@@ -1,3 +1,3 @@
-export const selectEmail = (state) => state.form.email;
+export const selectEmail = (state) => state.login.email;
 
-export const selectPassword = (state) => state.form.password;
+export const selectPassword = (state) => state.login.password;

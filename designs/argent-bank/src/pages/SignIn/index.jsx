@@ -1,4 +1,4 @@
-import { Form } from "../../features/Form";
+import { Login } from "../../features/Login";
 import "../../styles/pages/_signin.scss";
 
 export const SignIn = () => {
@@ -7,7 +7,7 @@ export const SignIn = () => {
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>
         <h1>Sign In</h1>
-        <Form />
+        <Login />
       </section>
     </main>
   );

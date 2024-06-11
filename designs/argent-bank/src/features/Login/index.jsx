@@ -1,44 +1,76 @@
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { selectEmail, selectPassword } from "../../app/selectors";
+import { loginSlice } from "./loginSlice";
+import { useLoginUserMutation } from "../../services/userApi";
+import "../../styles/components/_login.scss";
 
 export const Login = () => {
-  const user = useSelector((state) => state.user.userData);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [loginUser, { isLoading, isError, error }] = useLoginUserMutation();
+  const email = useSelector(selectEmail);
+  const password = useSelector(selectPassword);
+  const [customError, setCustomError] = useState(null);
 
-  if (!user) {
-    return <div>Nope</div>
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const userData = await loginUser({ email, password }).unwrap();
+      dispatch(loginSlice.actions.setUserData(userData));
+      setCustomError(null);
+      navigate('/user');
+    } catch (error){
+      setCustomError("Failed to sign in. Please try again.");
+    }
+  };
 
   return (
-    <>
-      <section className="account">
-        <div className="account-content-wrapper">
-          <h3 className="account-title">Argent Bank Checking (x8349)</h3>
-          <p className="account-amount">$2,082.79</p>
-          <p className="account-amount-description">Available Balance</p>
+    <form onSubmit={handleSubmit}>
+      <div className="input-wrapper">
+        <label htmlFor="username">
+          Username
+          <input
+            type="text"
+            id="username"
+            value={email}
+            onChange={(e) =>
+              dispatch(loginSlice.actions.setField({field: "email", value: e.target.value}))
+            }
+            required
+          />
+        </label>
+      </div>
+      <div className="input-wrapper">
+        <label htmlFor="password">
+          Password
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) =>
+              dispatch(loginSlice.actions.setField({field: "password", value: e.target.value})
+            )}
+            required
+          />
+        </label>
+      </div>
+      <div className="input-remember">
+        <input type="checkbox" id="remember-me" />
+        <label htmlFor="remember-me">
+          Remember me
+        </label>
+      </div>
+      <button type="submit" className="sign-in-button">
+        {isLoading ? "Loading..." : "Sign In"}
+      </button>
+      {(isError || customError) && (
+        <div className="error-message">
+          {customError ? customError : `Error: ${error?.data?.message || error.message}`}
         </div>
-        <div className="account-content-wrapper cta">
-          <button className="transaction-button">View transactions</button>
-        </div>
-      </section>
-      <section className="account">
-        <div className="account-content-wrapper">
-          <h3 className="account-title">Argent Bank Savings (x6712)</h3>
-          <p className="account-amount">$10,928.42</p>
-          <p className="account-amount-description">Available Balance</p>
-        </div>
-        <div className="account-content-wrapper cta">
-          <button className="transaction-button">View transactions</button>
-        </div>
-      </section>
-      <section className="account">
-        <div className="account-content-wrapper">
-          <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
-          <p className="account-amount">$184.30</p>
-          <p className="account-amount-description">Current Balance</p>
-        </div>
-        <div className="account-content-wrapper cta">
-          <button className="transaction-button">View transactions</button>
-        </div>
-      </section>
-    </>
+      )}
+    </form>
   );
 };

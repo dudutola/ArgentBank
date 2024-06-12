@@ -1,17 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { selectEmail, selectPassword } from "../../app/selectors";
+import { useDispatch } from "react-redux";
 import { loginSlice } from "./loginSlice";
 import { useLoginUserMutation } from "../../services/userApi";
 import "../../styles/components/_login.scss";
 
-export const LoginResponse = () => {
+export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginUser, { isLoading, isError, error }] = useLoginUserMutation();
-  const email = useSelector(selectEmail);
-  const password = useSelector(selectPassword);
+  const [email, setEmail ] = useState("");
+  const [password, setPassword] = useState("");
   const [customError, setCustomError] = useState(null);
 
   const handleSubmit = async (e) => {
@@ -36,9 +35,7 @@ export const LoginResponse = () => {
             type="text"
             id="username"
             value={email}
-            onChange={(e) =>
-              dispatch(loginSlice.actions.setField({field: "email", value: e.target.value}))
-            }
+            onChange={(event) => setEmail(event.target.value)}
             required
           />
         </label>
@@ -50,9 +47,7 @@ export const LoginResponse = () => {
             type="password"
             id="password"
             value={password}
-            onChange={(e) =>
-              dispatch(loginSlice.actions.setField({field: "password", value: e.target.value})
-            )}
+            onChange={(event) => setPassword(event.target.value)}
             required
           />
         </label>

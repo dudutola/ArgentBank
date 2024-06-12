@@ -1,13 +1,13 @@
-import { LoginResponse } from "../../features/LoginResponse";
+import { Login } from "../../features/Login";
 import "../../styles/pages/_signin.scss";
 
-export const Login = () => {
+export const LoginForm = () => {
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>
         <h1>Sign In</h1>
-        <LoginResponse />
+        <Login />
       </section>
     </main>
   );

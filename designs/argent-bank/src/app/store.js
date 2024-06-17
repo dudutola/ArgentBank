@@ -9,3 +9,9 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
 });
+
+const token = localStorage.getItem("token");
+
+if (token) {
+  store.dispatch(loginSlice.actions.setUserData({ body: { token }}));
+}

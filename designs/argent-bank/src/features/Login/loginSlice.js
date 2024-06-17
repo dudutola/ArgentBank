@@ -10,9 +10,11 @@ export const loginSlice = createSlice({
   reducers: {
     setUserData(state, action) {
       state.token = action.payload.body.token;
+      localStorage.setItem('token', state.token);
     },
     logout(state) {
       state.token = null;
+      localStorage.removeItem('token');
     },
     setUserProfile(state, action) {
       state.firstName = action.payload.body.firstName;

@@ -7,6 +7,7 @@ import "../../../styles/components/_header.scss";
 export const Header = () => {
   const token = useSelector((state) => state.login.token);
   const dispatch = useDispatch();
+  const firstName = useSelector((state) => state.login.firstName);
 
   const handleLogout = () => {
     dispatch(loginSlice.actions.logout());
@@ -23,7 +24,7 @@ export const Header = () => {
           <>
             <Link to="/user" className="main-nav-item">
               <i className="fa fa-user-circle"></i>
-              {/* Tony add name */}
+              {firstName}
             </Link>
             <Link to="/" className="main__nav--item" onClick={handleLogout}>
               <i className="fa fa-sign-out"></i>

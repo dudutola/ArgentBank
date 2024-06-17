@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useProfileUserMutation } from "../../services/userApi";
 import { useEffect } from "react";
-import { loginSlice } from "../../features/Login/loginSlice";
+import { profileSlice } from "../../features/Profile/profileSlice";
 
 export const UserProfile = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ export const UserProfile = () => {
     const profileFetch = async () => {
       try {
         const profileData = await profileUser({ token }).unwrap();
-        dispatch(loginSlice.actions.setUserProfile(profileData));
+        dispatch(profileSlice.actions.setUserProfile(profileData));
       } catch (error) {
         console.log("No first and last name in the profile.")
       }
@@ -22,8 +22,8 @@ export const UserProfile = () => {
     }
   }, [token, profileUser, dispatch]);
 
-  const firstName = useSelector((state) => state.login.firstName);
-  const lastName = useSelector((state) => state.login.lastName);
+  const firstName = useSelector((state) => state.profile.firstName);
+  const lastName = useSelector((state) => state.profile.lastName);
 
   return (
     <main className="main bg-dark">

@@ -4,8 +4,6 @@ export const loginSlice = createSlice({
   name: "login",
   initialState: {
     token: null,
-    firstName: '',
-    lastName: '',
   },
   reducers: {
     setUserData(state, action) {
@@ -16,11 +14,7 @@ export const loginSlice = createSlice({
       state.token = null;
       localStorage.removeItem('token');
     },
-    setUserProfile(state, action) {
-      state.firstName = action.payload.body.firstName;
-      state.lastName = action.payload.body.lastName;
-    },
   },
 });
 
-export const { setUserData, logout, setUserProfile } = loginSlice.actions;
+export const { setUserData, logout } = loginSlice.actions;

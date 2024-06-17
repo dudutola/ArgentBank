@@ -9,23 +9,10 @@ export const loginSlice = createSlice({
     setUserData(state, action) {
       state.token = action.payload.body.token;
     },
+    logout(state) {
+      state.token = null;
+    },
   },
 });
 
-export const { setUserData } = loginSlice.actions;
-// {user ? (
-//   <Link to="/user" className="main-nav-item">
-//     <i className="fa fa-user-circle"></i>
-//   </Link>
-// ) : null}
-// {user ? (
-//   <div className="main__nav--item" onClick={handleSignOut}>
-//     <i className="fa fa-sign-out"></i>
-//     Sign Out
-//   </div>
-// ) : (
-//   <Link to="/login" className="main__nav--item">
-//     <i className="fa fa-user-circle"></i>
-//     Sign In
-//   </Link>
-// )}
+export const { setUserData, logout } = loginSlice.actions;

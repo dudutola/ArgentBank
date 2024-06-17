@@ -1,11 +1,16 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { loginSlice } from "../../../features/Login/loginSlice";
 // import Logo from "../../../../img/argentBankLogo.png";
 import "../../../styles/components/_header.scss";
 
 export const Header = () => {
   const token = useSelector((state) => state.login.token);
+  const dispatch = useDispatch();
 
+  const handleLogout = () => {
+    dispatch(loginSlice.actions.logout());
+  };
 
   return (
     <nav className="main__nav">
@@ -18,8 +23,9 @@ export const Header = () => {
           <>
             <Link to="/user" className="main-nav-item">
               <i className="fa fa-user-circle"></i>
+              {/* Tony add name */}
             </Link>
-            <Link className="main__nav--item">
+            <Link to="/" className="main__nav--item" onClick={handleLogout}>
               <i className="fa fa-sign-out"></i>
               Sign Out
             </Link>

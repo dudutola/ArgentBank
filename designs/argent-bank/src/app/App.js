@@ -6,6 +6,7 @@ import '../styles/main.scss';
 import { Home } from "../pages/Home";
 import { LoginForm } from "../pages/LoginForm";
 import { UserProfile } from "../pages/UserProfile";
+import { Error } from "../pages/Error";
 import { Header } from "../common/components/Header";
 import { Footer } from "../common/components/Footer";
 
@@ -18,6 +19,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<LoginForm />} />
             <Route path='/profile' element={<UserProfile />} />
+            <Route path='*' element={<Error />} />
           </Routes>
         <Footer />
       </BrowserRouter>

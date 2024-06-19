@@ -1,4 +1,7 @@
 import "../../styles/pages/_home.scss";
+import iconChat from "../../img/icon-chat.webp";
+import iconMoney from "../../img/icon-money.webp";
+import iconSecurity from "../../img/icon-security.webp";
 
 export const Home = () => {
   return (
@@ -15,8 +18,8 @@ export const Home = () => {
       <section className="features">
         <h2 className="sr-only">Features</h2>
         <div className="feature__item">
-          <img alt="Chat Icon" className="feature__icon" />
-          <h3 className="feature-item-title">You are our #1 priority</h3>
+          <img src={iconChat} alt="Chat Icon" className="feature__icon" />
+          <h3 className="feature__item--title">You are our #1 priority</h3>
           <p>
             Need to talk to a representative? You can get in touch through our
             24/7 chat or through a phone call in less than 5 minutes.
@@ -24,6 +27,7 @@ export const Home = () => {
         </div>
         <div className="feature__item">
           <img
+            src={iconMoney}
             alt="Chat Icon"
             className="feature__icon"
           />
@@ -34,6 +38,7 @@ export const Home = () => {
         </div>
         <div className="feature__item">
           <img
+            src={iconSecurity}
             alt="Chat Icon"
             className="feature__icon"
           />

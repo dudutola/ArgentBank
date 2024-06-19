@@ -1,6 +1,6 @@
 
 .hero {
-  // background-image: url('../img/bank-tree.jpeg');
+  background-image: url('../../img/bank-tree.webp');
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -16,13 +16,13 @@
     text-align: left;
     margin: 0 auto;
 
-    &.subtitle {
+    .subtitle {
       font-weight: bold;
       font-size: 1rem;
       margin: 0;
     }
 
-    &.text {
+    .text {
       margin-bottom: 0;
       font-size: 0.9rem;
     }
@@ -42,11 +42,11 @@
       width: 300px;
       margin: 2rem;
 
-      &.subtitle {
+      .subtitle {
         font-size: 1.5rem;
       }
 
-      &.text {
+      .text {
         font-size: 1.2rem;
       }
     }
@@ -75,11 +75,11 @@
 .feature__item {
   flex: 1;
   padding: 2.5rem;
-}
 
-.feature__item--title {
-  color: #222;
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
+  &--title {
+    color: #222;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
 }

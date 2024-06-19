@@ -9,7 +9,7 @@ export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginUser, { isLoading, isError, error }] = useLoginUserMutation();
-  const [email, setEmail ] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [customError, setCustomError] = useState(null);
 

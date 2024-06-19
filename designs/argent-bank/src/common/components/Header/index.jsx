@@ -1,16 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { loginSlice } from "../../../features/Login/loginSlice";
+import { clearUserProfile } from "../../../features/Profile/profileSlice";
 // import Logo from "../../../../img/argentBankLogo.png";
 import "../../../styles/components/_header.scss";
 
 export const Header = () => {
-  const token = useSelector((state) => state.login.token);
   const dispatch = useDispatch();
-  const firstName = useSelector((state) => state.login.firstName);
+  const token = useSelector((state) => state.login.token);
+  const firstName = useSelector((state) => state.profile.firstName);
 
   const handleLogout = () => {
     dispatch(loginSlice.actions.logout());
+    dispatch(clearUserProfile());
   };
 
   return (

@@ -3,6 +3,8 @@ import { useProfileUserMutation } from "../../services/userApi";
 import { useEffect } from "react";
 import { profileSlice } from "../../features/Profile/profileSlice";
 
+import { Profile } from "../../features/Profile";
+
 export const UserProfile = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.login.token);
@@ -29,7 +31,7 @@ export const UserProfile = () => {
     <main className="main bg-dark">
       <div className="header">
         <h1>Welcome back<br />{firstName} {lastName}!</h1>
-        <button className="edit-button">Edit Name</button>
+        <Profile />
       </div>
     </main>
   );

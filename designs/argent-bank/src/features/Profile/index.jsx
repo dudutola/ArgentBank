@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useUpdateUsernameMutation } from "../../services/userApi";
 import { profileSlice } from "./profileSlice";
+import "../../styles/components/_profile.scss";
 
 export const Profile = () => {
   const dispatch = useDispatch();
@@ -54,6 +55,17 @@ export const Profile = () => {
     }
   };
 
+  const closeModal = () => {
+    setIsEditing(false);
+  };
+
+  const handleBackdropClick = (e) => {
+    if (e.target.classList.contains("backdrop")) {
+      setIsEditing(false);
+      setError(null);
+    }
+  };
+
   return (
     <>
       {!isEditing ? (
@@ -64,24 +76,35 @@ export const Profile = () => {
           Edit Name
         </button>
       ) : (
-        <form onSubmit={handleSubmit}>
-          <p>Current username: {username}</p>
-          <div className="input-wrapper">
-            <label htmlFor="newUsername">
-              New Username
-              <input
-                type="text"
-                placeholder="Enter new username"
-                id="newUsername"
-                onChange={(event) => setNewUsername(event.target.value)}
-              />
-            </label>
+        <>
+        <div className="backdrop" onClick={handleBackdropClick}></div>
+        <div className="modal" style={{ display: isEditing ? "block" : "none" }}>
+          <div className="modal__content">
+            <div className="flex-close">
+              <span className="close" onClick={closeModal}>&times;</span>
+            </div>
+            <form onSubmit={handleSubmit} className="modal__content--form">
+              <p className="current-username">Current username: {username}</p>
+              <div className="input-wrapper">
+                <label htmlFor="newUsername">
+                  New Username
+                  <input
+                    type="text"
+                    placeholder="Enter new username"
+                    id="newUsername"
+                    onChange={(event) => setNewUsername(event.target.value)}
+                  />
+                </label>
+              </div>
+              {(error || isError) && <p className="username-error">{error}</p>}
+              <button type="submit" className="sign-in-button">
+                {isLoading ? "Loading..." : "Update username"}
+              </button>
+            </form>
+
           </div>
-          {(error || isError) && <p>{error}</p>}
-          <button type="submit" className="sign-in-button">
-            {isLoading ? "Loading..." : "Update username"}
-          </button>
-        </form>
+        </div>
+        </>
       )}
     </>
   );

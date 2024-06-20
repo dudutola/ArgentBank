@@ -3,6 +3,7 @@ import { useProfileUserMutation } from "../../services/userApi";
 import { useEffect } from "react";
 import { profileSlice } from "../../features/Profile/profileSlice";
 import { Profile } from "../../features/Profile";
+import "../../styles/pages/_userProfile.scss";
 
 export const UserProfile = () => {
   const dispatch = useDispatch();
@@ -27,8 +28,8 @@ export const UserProfile = () => {
   const lastName = useSelector((state) => state.profile.lastName);
 
   return (
-    <main classNameName="main bg-dark">
-      <div classNameName="header">
+    <main className="main bg-dark">
+      <div className="header">
         <h1>Welcome back<br />{firstName} {lastName}!</h1>
         <Profile />
       </div>

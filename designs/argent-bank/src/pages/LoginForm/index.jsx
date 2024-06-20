@@ -1,11 +1,13 @@
 import { Login } from "../../features/Login";
-import "../../styles/pages/_signin.scss";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import "../../styles/pages/_loginForm.scss";
 
 export const LoginForm = () => {
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">
-        <i className="fa fa-user-circle sign-in-icon"></i>
+        <FontAwesomeIcon icon={faUserCircle} className="sign-in-icon" />
         <h1>Sign In</h1>
         <Login />
       </section>

@@ -7,8 +7,8 @@ import { Home } from "../pages/Home";
 import { LoginForm } from "../pages/LoginForm";
 import { UserProfile } from "../pages/UserProfile";
 import { Error } from "../pages/Error";
-import { Header } from "../common/components/Header";
-import { Footer } from "../common/components/Footer";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
 
 function App() {
   return (

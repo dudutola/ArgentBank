@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useUpdateUsernameMutation } from "../../services/userApi";
+import { useUpdateUserNameMutation } from "../../services/userApi";
 import { profileSlice } from "./profileSlice";
 import "../../styles/components/_profile.scss";
 
 export const Profile = () => {
   const dispatch = useDispatch();
   const username = useSelector((state) => state.profile.userName) || "";
-  const [updateUsername, { isLoading, isError }] = useUpdateUsernameMutation();
+  const [updateUserName, { isLoading, isError }] = useUpdateUserNameMutation();
   const [newUsername, setNewUsername] = useState(username);
   const [isEditing, setIsEditing] = useState(false);
   const [error, setError] = useState(null);
@@ -46,7 +46,7 @@ export const Profile = () => {
     }
 
     try {
-      const usernameResponse = await updateUsername({ userName: newUsername }).unwrap();
+      const usernameResponse = await updateUserName({ userName: newUsername }).unwrap();
       dispatch(profileSlice.actions.updateUsername({ userName: usernameResponse.body.userName }));
       setError(null);
       setIsEditing(false);

@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { loginSlice } from "../../../features/Login/loginSlice";
-import { clearUserProfile } from "../../../features/Profile/profileSlice";
-import Logo from "../../../img/argentBankLogo.webp";
+import { loginSlice } from "../../features/Login/loginSlice";
+import { clearUserProfile } from "../../features/Profile/profileSlice";
+import Logo from "../../img/argentBankLogo.webp";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import "../../../styles/components/_header.scss";
+import "../../styles/components/_header.scss";
 
 export const Header = () => {
   const dispatch = useDispatch();

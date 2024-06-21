@@ -31,7 +31,7 @@ export const api = createApi({
         body: credentials,
       }),
     }),
-    updateUsername: builder.mutation({
+    updateUserName: builder.mutation({
       query: (credentials) => ({
         url: 'user/profile',
         method: 'PUT',
@@ -41,4 +41,4 @@ export const api = createApi({
   })
 });
 
-export const { useGetUserQuery, useLoginUserMutation, useProfileUserMutation, useUpdateUsernameMutation } = api;
+export const { useGetUserQuery, useLoginUserMutation, useProfileUserMutation, useUpdateUserNameMutation } = api;

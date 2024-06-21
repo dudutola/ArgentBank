@@ -10,7 +10,7 @@ import "../../../styles/components/_header.scss";
 export const Header = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.login.token);
-  const firstName = useSelector((state) => state.profile.firstName);
+  const userName = useSelector((state) => state.profile.userName);
 
   const handleLogout = () => {
     dispatch(loginSlice.actions.logout());
@@ -28,7 +28,7 @@ export const Header = () => {
           <>
             <Link to="/profile" className="main__nav--item">
               <FontAwesomeIcon icon={faUserCircle} className="fa-icon" />
-              {firstName}
+              {userName}
             </Link>
             <Link to="/" className="main__nav--item" onClick={handleLogout}>
               <FontAwesomeIcon icon={faSignOutAlt} className="fa-icon sign-out" />

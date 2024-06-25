@@ -34,7 +34,6 @@ export const Login = () => {
           <input
             type="text"
             id="username"
-            value={email}
             onChange={(event) => setEmail(event.target.value)}
             required
           />
@@ -46,7 +45,6 @@ export const Login = () => {
           <input
             type="password"
             id="password"
-            value={password}
             onChange={(event) => setPassword(event.target.value)}
             required
           />
